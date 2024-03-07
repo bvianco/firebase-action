@@ -6,10 +6,33 @@ branding:
   icon: "package"
   color: "gray-dark"
 
+inputs:
+  debian-version:
+    description: 'Version of the Debian base image'
+    required: false
+  nvm-version:
+    description: 'Version of Node Version Manager'
+    required: false
+  node-version:
+    description: 'Version of NodeJS to run with'
+    required: false
+  npm-version:
+    description: 'Version of npm to run with'
+    required: false
+  firebase-tools-version:
+    description: 'Version of the Debian base image'
+    required: false
+
 outputs:
   response:
     description: "Response from the firebase command executed"
 
 runs:
   using: "docker"
-  image: "docker://w9jds/firebase-action:v13.4.0"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.debian-version }}
+    - ${{ inputs.nvm-version }}
+    - ${{ inputs.node-version }}
+    - ${{ inputs.npm-version }}
+    - ${{ inputs.firebase-tools-version }}
